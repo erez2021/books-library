@@ -1,31 +1,30 @@
-import { Component, OnInit, Input, EventEmitter,Output } from '@angular/core';
-
-// export class Book {
-//   public title!: string;
-//   public date!: string;
-// public author!: string;
-// }
-
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Book } from 'src/app/model/book';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
-  // model = new Book();
-@Output() closeModal: EventEmitter<any> = new EventEmitter();
-@Output() saveBookDetails: EventEmitter<any> = new EventEmitter();
-@Input() display: any
-@Input() bookToEdit: any
-  constructor() { }
+  book: Book = {
+    _id: 0,
+    title: '',
+    date: '',
+    author: undefined,
+  };
+  @Output() closeModal: EventEmitter<any> = new EventEmitter();
+  @Output() saveBookDetails: EventEmitter<any> = new EventEmitter();
+  @Input() display: any;
+  @Input() bookToEdit: any;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+
   closeEditModal() {
-    this.closeModal.emit()
+    this.closeModal.emit();
   }
   onSubmit(form: any) {
-    console.log(form.value);
-    this.saveBookDetails.emit(form.value)
+    let bookToSent = form.value;
+    bookToSent._id = this.bookToEdit._id;
+    this.saveBookDetails.emit(bookToSent);
   }
 }
