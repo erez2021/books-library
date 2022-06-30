@@ -1,0 +1,34 @@
+<div class="modal"  tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" >Book edit</h5>
+     
+        </div>
+        <div class="modal-body">
+
+            <form #editForm="ngForm" (ngSubmit)="onSubmit(editForm)">
+                <div class="form-group">
+                  <label>Title</label>
+                  <input type="text" name="title" class="form-control" [(ngModel)]="bookToEdit.title" required>
+                </div>
+                <div class="form-group">
+                  <label>Date</label>
+                  <input type="text" class="form-control" name="date" [(ngModel)]="bookToEdit.date" required>
+                </div>
+                <div class="form-group">
+                    <label>Author</label>
+                    <input type="text" class="form-control" name="author" [(ngModel)]="bookToEdit.author" required>
+                  </div>
+      
+                <div class="form-group modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeEditModal()">Close</button>
+                  <button class="btn btn-primary btn-block">Save changes</button>
+                </div>
+              </form>
+        
+            </div>
+  
+      </div>
+    </div>
+  </div>
